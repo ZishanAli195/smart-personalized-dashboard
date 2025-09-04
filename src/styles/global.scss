@@ -80,3 +80,43 @@ html, body, #root { height: 100%; }
   box-shadow: 0 12px 32px rgba(0,0,0,0.18);
   transition: transform 0.2s, box-shadow 0.2s;
 }
+
+/* ========================
+   Weather Icon Animations
+======================== */
+
+/* Sun rotation */
+@keyframes sunRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-sun { animation: sunRotate 10s linear infinite; }
+
+/* Cloud movement */
+@keyframes cloudMove {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+.animate-cloud { animation: cloudMove 3s ease-in-out infinite; }
+
+/* Rain falling */
+@keyframes rainFall {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0.5; }
+}
+.animate-rain { animation: rainFall 0.5s linear infinite; }
+
+/* Snow falling */
+@keyframes snowFall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
+}
+.animate-snow { animation: snowFall 1s linear infinite; }
+
+/* Thunder flash */
+@keyframes thunderFlash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.animate-thunder { animation: thunderFlash 0.8s ease-in-out infinite; }
