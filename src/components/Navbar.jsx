@@ -7,16 +7,41 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 
 export default function Navbar({ dark, setDark }) {
   return (
-    <AppBar position="static" sx={{ background: dark ? '#1e1b4b' : '#f6f7fb', boxShadow: 'none', mb: 2 }}>
+    <AppBar 
+      position="sticky" 
+      sx={{ 
+        top: 0,
+        background: dark 
+          ? 'linear-gradient(90deg,#1e1b4b,#312e81)' 
+          : 'linear-gradient(90deg,#f6f7fb,#dbeafe)',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        mb: 2
+      }}
+    >
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        
         {/* Logo/Title */}
         <Typography variant="h6" sx={{ fontWeight: 700, color: dark ? '#fff' : '#222' }}>
           Smart Personalized Dashboard
         </Typography>
 
         {/* Search Bar */}
-        <Box sx={{ display: 'flex', alignItems: 'center', background: dark ? '#23235b' : '#e0e7ff', borderRadius: 2, px: 1 }}>
-          <InputBase placeholder="Search…" sx={{ ml: 1, flex: 1, color: dark ? '#fff' : '#222' }} />
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            background: dark ? '#23235b' : '#e0e7ff', 
+            borderRadius: 2, 
+            px: 1,
+            transition: 'width 0.3s ease',
+            width: { xs: '120px', sm: '200px' },
+            '&:hover': { width: { xs: '160px', sm: '280px' } }
+          }}
+        >
+          <InputBase 
+            placeholder="Search…" 
+            sx={{ ml: 1, flex: 1, color: dark ? '#fff' : '#222' }} 
+          />
           <IconButton size="small">
             <SearchIcon sx={{ color: dark ? '#fff' : '#222' }} />
           </IconButton>
@@ -28,14 +53,20 @@ export default function Navbar({ dark, setDark }) {
           <IconButton onClick={() => setDark(d => !d)} color="inherit">
             {dark ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
+
           {/* Notifications */}
           <IconButton color="inherit">
             <Badge badgeContent={2} color="error">
               <NotificationsIcon />
             </Badge>
           </IconButton>
+
           {/* User Avatar */}
-          <Avatar alt="User" src="https://i.pravatar.cc/40?img=3" />
+          <Avatar 
+            alt="User" 
+            src="https://i.pravatar.cc/40?img=3" 
+            sx={{ cursor: 'pointer' }}
+          />
         </Box>
       </Toolbar>
     </AppBar>

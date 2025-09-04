@@ -7,11 +7,11 @@ export default function StockWidget({ symbol = "AAPL" }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbol}`)
+    const key = import.meta.env.VITE_FINNHUB_KEY;
+    fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${key}`)
       .then(res => res.json())
       .then(data => {
-        const quote = data.quoteResponse.result[0];
-        setPrice(quote ? quote.regularMarketPrice : "N/A");
+        setPrice(data.c || "N/A"); // current price
         setLoading(false);
       })
       .catch(() => setLoading(false));
