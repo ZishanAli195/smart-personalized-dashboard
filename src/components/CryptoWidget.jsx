@@ -12,20 +12,30 @@ export default function CryptoWidget({ coin = "bitcoin" }) {
     )
       .then((res) => res.json())
       .then((result) => {
-        setData(result[coin]);
+        setData(result[coin] || null);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, [coin]);
 
-  if (loading) return <WidgetCard title="Crypto" icon={<MonetizationOnIcon />}>Loading...</WidgetCard>;
+  if (loading)
+    return (
+      <WidgetCard title="Crypto" icon={<MonetizationOnIcon />}>
+        Loading...
+      </WidgetCard>
+    );
 
-  if (!data) return <WidgetCard title="Crypto" icon={<MonetizationOnIcon />}>Error loading data</WidgetCard>;
+  if (!data)
+    return (
+      <WidgetCard title="Crypto" icon={<MonetizationOnIcon />}>
+        Error loading data
+      </WidgetCard>
+    );
 
-  const price = data.usd;
-  const change = data.usd_24h_change;
-  const high = data.usd_24h_high;
-  const low = data.usd_24h_low;
+  const price = data.usd ?? 0;
+  const change = data.usd_24h_change ?? 0;
+  const high = data.usd_24h_high ?? 0;
+  const low = data.usd_24h_low ?? 0;
 
   return (
     <WidgetCard title="BTC / USD" icon={<MonetizationOnIcon />}>
@@ -33,7 +43,9 @@ export default function CryptoWidget({ coin = "bitcoin" }) {
       <p style={{ color: change >= 0 ? "green" : "red" }}>
         {change.toFixed(2)}% (24h)
       </p>
-      <p>High: ${high.toLocaleString()} · Low: ${low.toLocaleString()}</p>
+      <p>
+        High: ${high.toLocaleString()} · Low: ${low.toLocaleString()}
+      </p>
     </WidgetCard>
   );
 }

@@ -63,7 +63,6 @@ export default function App() {
             <NewsWidget />
             <TodoWidget />
             <CalendarWidget />
-            <NotesWidget />
             <QuoteWidget />
             <StockWidget />
           </div>
